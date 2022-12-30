@@ -1,6 +1,8 @@
 <script>
-    import { pokemon } from "$lib/pokestore";
     import PokemanCard from "$lib/pokemanCard.svelte";
+    export let data;
+    const {pokemon} = data;
+    console.log(pokemon);
 
     let searchTerm = "";
     /**
@@ -10,10 +12,10 @@
 
     $: {
         if (searchTerm) {
-            filteredPokemon = $pokemon.filter(pokeman => pokeman
+            filteredPokemon = pokemon.filter((/** @type {{ name: string | string[]; }} */ pokeman) => pokeman
             .name.includes(searchTerm));
         } else {
-            filteredPokemon = [...$pokemon]
+            filteredPokemon = [...pokemon]
         }
     };
 </script>
